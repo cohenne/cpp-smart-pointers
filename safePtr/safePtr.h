@@ -17,8 +17,8 @@ public:
     T& operator* () const {return *_ptr;}
     T* operator->() const {return _ptr;}
 
-    bool operator==(const SafePtr<T>& other)const{return _ptr == other._ptr;}
-    bool operator!=(const SafePtr<T>& other)const{return _ptr != other._ptr;}
+//    bool operator==(const SafePtr<T>& other)const{return _ptr == other._ptr;}
+//    bool operator!=(const SafePtr<T>& other)const{return _ptr != other._ptr;}
 
     T* release();
     void reset(T* ptr=NULL);

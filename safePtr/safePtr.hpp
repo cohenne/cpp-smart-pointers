@@ -2,7 +2,6 @@
 
 
 template<class T>
-
 inline SafePtr<T>& SafePtr<T>:: operator=(SafePtr& other){
     if(this != &other){
         reset(other.release());

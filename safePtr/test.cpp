@@ -1,17 +1,12 @@
 
 #include "test.h"
 #include "safePtr.h"
-
+#include "../utils.h"
 
 struct Inner {
     Inner(int n = 0): _num(n) {}
     int _num;
 };
-
-
-void printTest(bool result){
-    std::cout << (result ? "test passed" : "test failed") << "\n";
-}
 
 void testSafePtr::testAll() {
     testCtorAndDtor();
