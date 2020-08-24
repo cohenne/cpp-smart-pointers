@@ -1,7 +1,8 @@
 #include <iostream>
-#include "test.h"
+#include "safePtr/test.h"
 
 int main() {
-    test();
+    testSafePtr test;
+    test.testAll();
     return 0;
 }

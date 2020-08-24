@@ -5,13 +5,13 @@
 #ifndef SMART_POINTERS_UNIQUEPTR_H
 #define SMART_POINTERS_UNIQUEPTR_H
 
-#include "smartPtr.h"
+#include "../safePtr/safePtr.h"
 
 template <typename T>
-class UniquePtr: public SmartPtr<T> {
+class UniquePtr: public SafePtr<T> {
 
 public:
-    explicit UniquePtr(T* ptr=NULL): SmartPtr<T>(ptr){}
+    explicit UniquePtr(T* ptr=NULL): SafePtr<T>(ptr){}
 
 private:
     UniquePtr(const UniquePtr<T>& other);
