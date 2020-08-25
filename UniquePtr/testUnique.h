@@ -1,10 +1,13 @@
-
+//
+// Created by a on 8/24/20.
+//
 
 #ifndef SMART_POINTERS_TESTUNIQUE_H
-#define SMART_POINTERS_TEST_H
+#define SMART_POINTERS_TESTUNIQUE_H
 
+#include <iostream>
 
-class testSafePtr {
+class testUniquePtr {
 public:
     void testAll();
 
@@ -16,12 +19,10 @@ public:
 
     void testCtorAndDtor();
 
-    void testCopyCtor();
-
-    void testAssignmentOperator();
-
     void testOperatorGetData();
 };
+
+
 
 
 

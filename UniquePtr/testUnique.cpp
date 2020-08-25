@@ -1,7 +1,8 @@
 
-#include "test.h"
+#include "testUnique.h"
 #include "UniquePtr.h"
 #include "../utils.h"
+
 
 struct Inner {
     Inner(int n = 0): _num(n) {}
@@ -29,7 +30,7 @@ void testUniquePtr::checkEqual(T num, T num2, bool flag) {
 void testUniquePtr::testCtorAndDtor() {
     std::cout << "\n\n--- ctor and dtor test ---" << std::endl;
     UniquePtr<int> i(new int);
-    UniquePtr<int, ArrayDeleter<int> > d(new int);
+    UniquePtr<int, ArrayDeleter<int> > d(new int[10]);
     std::cout << "test passed" << std::endl;
     std::cout << "---------------------------" << std::endl;
 }

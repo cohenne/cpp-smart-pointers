@@ -1,6 +1,9 @@
+//
+// Created by a on 8/24/20.
+//
 
-#include "test.h"
-#include "safePtr.h"
+#include "testShared.h"
+#include "SharedPtr.h"
 #include "../utils.h"
 
 struct Inner {
@@ -8,61 +11,70 @@ struct Inner {
     int _num;
 };
 
-void testSafePtr::testAll() {
+class A
+{
+    int a;
+};
+class B: public A
+{
+    int b;
+};
+
+void testSharedPtr::testAll() {
     testCtorAndDtor();
     testCopyCtor();
-    testAssignmentOperator();
     testOperatorGetData();
+//    phase5();
 }
 
 
 template<typename T>
-void testSafePtr::checkNull(T* ptr, bool flag) {
+void testSharedPtr::checkNull(T* ptr, bool flag) {
     printTest((flag && ptr) || (!flag && !ptr));
 }
 
 
 template<typename T>
-void testSafePtr::checkEqual(T num, T num2, bool flag) {
+void testSharedPtr::checkEqual(T num, T num2, bool flag) {
     printTest((flag && num == num2) || (!flag && num != num2));
 }
 
 
-void testSafePtr::testCtorAndDtor() {
+void testSharedPtr::testCtorAndDtor() {
     std::cout << "\n\n--- ctor and dtor test ---" << std::endl;
-    SafePtr<int> i(new int);
-    SafePtr<double> d(new double);
+    Shared_Ptr<int> i(new int);
+    Shared_Ptr<double> d(new double);
     std::cout << "test passed" << std::endl;
     std::cout << "---------------------------" << std::endl;
 }
 
 
-void testSafePtr::testCopyCtor() {
+void testSharedPtr::testCopyCtor() {
     std::cout << "\n\n--- copy constructor test ---" << std::endl;
 
-    SafePtr<char> i(new char);
-    SafePtr<char> c(i);
-    SafePtr<long> ll(new long);
-    SafePtr<long> llc(ll);
-
-    checkNull(c.get());
-    checkNull(i.get(), false);
-    checkNull(llc.get());
-    checkNull(ll.get(), false);
-
-    SafePtr<char> b(i);
-    checkNull(i.get(), false);
-    checkNull(i.get(), false);
+    Shared_Ptr<char> i(new char);
+    Shared_Ptr<char> c(i);
+//    Shared_Ptr<long> ll(new long);
+//    Shared_Ptr<long> llc(ll);
+//
+//    checkNull(c.get());
+//    checkNull(i.get(), false);
+//    checkNull(llc.get());
+//    checkNull(ll.get(), false);
+//
+//    Shared_Ptr<char> b(i);
+//    checkNull(i.get(), false);
+//    checkNull(i.get(), false);
 
     std::cout << "---------------------------" << std::endl;
 }
 
 
-void testSafePtr::testAssignmentOperator() {
+void testSharedPtr::testAssignmentOperator() {
     std::cout << "\n\n--- operator= test ---" << std::endl;
 
-    SafePtr<int> i(new int);
-    SafePtr<int> j;
+    Shared_Ptr<int> i(new int);
+    Shared_Ptr<int> j;
     checkNull(j.get(), false);
 
     j = i;
@@ -77,10 +89,10 @@ void testSafePtr::testAssignmentOperator() {
 }
 
 
-void testSafePtr::testOperatorGetData() {
+void testSharedPtr::testOperatorGetData() {
     std::cout << "\n\n--- operator* test ---" << std::endl;
 
-    SafePtr<int> i(new int(10));
+    Shared_Ptr<int> i(new int(10));
 
     checkEqual(*i, 10);
     *i = 8;
@@ -89,14 +101,21 @@ void testSafePtr::testOperatorGetData() {
     std::cout << "---------------------------" << std::endl << std::endl;
     std::cout << "\n\n--- operator-> test ---" << std::endl;
 
-    SafePtr<Inner> p(new Inner);
+    Shared_Ptr<Inner> p(new Inner);
     checkEqual(p->_num, 0);
 
-    SafePtr<Inner> p2(new Inner(8));
+    Shared_Ptr<Inner> p2(new Inner(8));
     checkEqual(p2->_num, 8);
 
-    SafePtr<Inner> p3(p2);
+    Shared_Ptr<Inner> p3(p2);
     checkEqual(p3->_num, 8);
 
     std::cout << "---------------------------" << std::endl;
+}
+
+void testSharedPtr::phase5(){
+    Shared_Ptr<A>a(new A);
+    Shared_Ptr<B>b(new B);
+    a=b;
+    printTest((a==b));
 }

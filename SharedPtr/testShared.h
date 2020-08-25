@@ -2,12 +2,11 @@
 // Created by a on 8/24/20.
 //
 
-#ifndef SMART_POINTERS_TEST_H
-#define SMART_POINTERS_TEST_H
+#ifndef SMART_POINTERS_TESTSHARED_H
+#define SMART_POINTERS_TESTSHARED_H
 
-#include <iostream>
 
-class testUniquePtr {
+class testSharedPtr {
 public:
     void testAll();
 
@@ -19,11 +18,14 @@ public:
 
     void testCtorAndDtor();
 
+    void testCopyCtor();
+
+    void testAssignmentOperator();
+
     void testOperatorGetData();
+
+    void phase5();
 };
 
 
-
-
-
-#endif //SMART_POINTERS_TEST_H
+#endif //SMART_POINTERS_TESTSHARED_H
